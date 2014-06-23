@@ -51,15 +51,15 @@ Option Explicit
 
 Private mLinkhub As Linkhub
 
-Private Const ServiceID = "POPBILL_TEST"
-Private Const PartnerID = "TESTER"
+Private Const serviceID = "POPBILL_TEST"
+Private Const linkID = "TESTER"
 Private Const SecretKey = "088b1258aoeMH5OtGjK4zaOlwZGVvSK40ceI8t4j7Hw="
 
 
 Private Sub btnGetBalance_Click()
     Dim remainPoint As Double
     
-    remainPoint = mLinkhub.GetBalance(txtSession_Token.Text, ServiceID)
+    remainPoint = mLinkhub.GetBalance(txtSession_Token.Text, serviceID)
     
     If remainPoint < 0 Then
         MsgBox ("[" + CStr(mLinkhub.LastErrCode) + "] " + mLinkhub.LastErrMessage)
@@ -74,7 +74,7 @@ End Sub
 Private Sub btnGetPartnerBalance_Click()
     Dim remainPoint As Double
     
-    remainPoint = mLinkhub.GetPartnerBalance(txtSession_Token.Text, ServiceID)
+    remainPoint = mLinkhub.GetPartnerBalance(txtSession_Token.Text, serviceID)
     
     If remainPoint < 0 Then
         MsgBox ("[" + CStr(mLinkhub.LastErrCode) + "] " + mLinkhub.LastErrMessage)
@@ -93,7 +93,7 @@ Private Sub btnGetToken_Click()
     scope.Add "member"
     scope.Add "110"
     
-    Set token = mLinkhub.getToken(ServiceID, "1231212312", scope)
+    Set token = mLinkhub.getToken(serviceID, "1231212312", scope)
     
     If token Is Nothing Then
         MsgBox ("[" + CStr(mLinkhub.LastErrCode) + "] " + mLinkhub.LastErrMessage)
@@ -109,7 +109,7 @@ Private Sub Form_Load()
   
     Set mLinkhub = New Linkhub
     
-    mLinkhub.PartnerID = PartnerID
+    mLinkhub.linkID = linkID
     mLinkhub.SercetKey = SecretKey
     mLinkhub.IsTest = True
     
